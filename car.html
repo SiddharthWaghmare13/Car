@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Static Driving Simulation with Start Button</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #87CEEB; /* Sky blue background */
+        }
+
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            background-color: #2F4F4F; /* Dark gray road */
+            display: none; /* Hide the game initially */
+        }
+
+        #start-screen {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+
+        #start-button {
+            padding: 15px 30px;
+            font-size: 20px;
+            color: white;
+            background-color: #007BFF; /* Blue button */
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #car {
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            background-color: red;
+            bottom: 10px;
+            left: 0; /* Start from the left side */
+            border-radius: 10px;
+            transition: left 2s; /* Smooth transition for movement */
+        }
+
+        .moving #car {
+            left: calc(100% - 50px); /* Move car to the right side */
+        }
+
+        .obstacle {
+            position: absolute;
+            width: 50px;
+            height: 100px;
+            background-color: green;
+        }
+
+        .obstacle.one {
+            top: 20%;
+            left: 20%;
+        }
+
+        .obstacle.two {
+            top: 50%;
+            left: 40%;
+        }
+
+        .obstacle.three {
+            top: 80%;
+            left: 60%;
+        }
+    </style>
+</head>
+<body>
+    <div id="start-screen">
+        <button id="start-button">Start Game</button>
+    </div>
+
+    <div id="game-container">
+        <div id="car"></div>
+        <div class="obstacle one"></div>
+        <div class="obstacle two"></div>
+        <div class="obstacle three"></div>
+    </div>
+
+    <script>
+        document.getElementById('start-button').addEventListener('click', function() {
+            document.getElementById('start-screen').style.display = 'none';
+            document.getElementById('game-container').style.display = 'block';
+
+            // Add the class that triggers the animation
+            document.getElementById('game-container').classList.add('moving');
+        });
+    </script>
+</body>
+</html>
